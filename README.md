@@ -62,6 +62,7 @@ Here's a brief description of the key components of the DRF architecture:
 #### Directory Strucutre
 
 The directory structure of Django Rest Framework (DRF) is similar to the directory structure of a standard Django project. However, DRF introduces some specific directories and files that are essential for building Web APIs. Here's a brief description of the main directories you would find in a typical DRF project:
+
 **Project Root Directory**:
 - This is the top-level directory of the DRF project.
 - Contains the main project configuration file, typically named settings.py, where you define project-wide settings.
@@ -75,7 +76,7 @@ The directory structure of Django Rest Framework (DRF) is similar to the directo
 - The serializers.py file defines the serializers for converting data between complex data types and API responses.
 
 Example: 
-
+~~~
 project_root/
 |-- django_quickproject/
 |   |-- __init__.py
@@ -101,7 +102,7 @@ project_root/
 |-- manage.py
 |-- README.md (This file!)
 |-- requirements.txt  (optional)
-
+~~~
 #### Django Models (ORM)
 
 Django Rest Framework (DRF) uses Django's powerful Object-Relational Mapping (ORM) system to interact with databases and manage data persistence in Web APIs. The DRF ORM builds upon Django's ORM, allowing developers to work with API resources as Python objects and easily perform CRUD (Create, Retrieve, Update, Delete) operations on the underlying database. Through the use of Django models, developers can define the data structure of their API resources, including fields, relationships, and constraints. The ORM abstracts the complexities of SQL queries and database interactions, making it easier to work with data and eliminating the need for writing raw SQL queries. Additionally, the DRF ORM supports various database backends, enabling developers to switch between databases seamlessly, providing flexibility and scalability in building APIs. Overall, the DRF ORM simplifies data management and database operations, allowing developers to focus on creating robust and efficient Web APIs with Django Rest Framework.
@@ -181,29 +182,44 @@ Django Rest Framework (DRF) routing is an essential component that maps URLs to 
 Example: 
 
 ~~~python
+from django.contrib import admin
 from django.urls import path
-from books.views import BookListCreateView
+from rest_framework.routers import SimpleRouter
+from rest_framework.authtoken import views
+from books.views import BookListCreateView ### Book View
+
+from users.api.views import UserProfileExampleViewSet
+
+router = SimpleRouter()
+
+router.register("users", UserProfileExampleViewSet, basename="users")
 
 urlpatterns = [
-    path('books/', BookListCreateView.as_view(), name='book-list-create'),
-]
+    path("admin/", admin.site.urls),
+    path("api/token-auth/", views.obtain_auth_token),
+    path('books/', BookListCreateView.as_view(), name='book-list-create'), ## Book route
+]+router.urls
 ~~~
 
 #### Creating Apps
 
+DRF provides a simple modularization strategy with apps. To create a new app to your project type:
+
 ```django-admin startapp new_app_name```
 
-- 1: Add app to INSTALLED_APPS variable at django_quickproject/settings.py;
-- 2: Create models at new_app_name/models.py
+- 1: Add app to INSTALLED_APPS variable at **django_quickproject/settings.py**;
+- 2: Create models at **new_app_name/models.py**.
 - 3: Update the database structure to include new models:
         - ```python manage.py makemigrations```
         - ```python manage.py migrate```
-- 4: Add the models to admin interface including at new_app_name/admin.py;
-- 5: Create a new directory called 'api' at app root directory (new_app_name/api);
-- 6: Define serializers to new models at 'new_app_name/api/serializers.py' (create serializers.py file);
-- 7: Create API Views at 'new_app_name/api/views.py' (create views.py file);
-- 8: Set the routes at 'django_quickproject/urls.py';
-        - ```router.register('api/new_view', ViewClass, basename='new_view')```
+- 4: Add the models to admin interface including at **new_app_name/admin.py**;
+- 5: Create a new directory called **'api'** at app root directory (new_app_name/api);
+- 6: Define serializers to new models at **new_app_name/api/serializers.py** (create serializers.py file);
+- 7: Create API Views at **new_app_name/api/views.py** (create views.py file);
+- 8: Set the routes at **django_quickproject/urls.py**;
+~~~python
+router.register('api/new_view', ViewClass, basename='new_view')
+~~~
 - 9: Run the server
         - ```python manage.py runserver```
 #### Token Authentication
