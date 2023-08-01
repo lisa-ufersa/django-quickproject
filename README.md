@@ -46,7 +46,7 @@ This guide aims to jump start the project settings and bring a fast hands-on DRF
 
 #### DRF Architecture
 
-The architecture of Django Rest Framework (DRF) is built on top of the well-established architecture of Django, which is a high-level Python web framework. DRF extends Django's capabilities to provide a specialized architecture for building Web APIs (Application Programming Interfaces) following the principles of Representational State Transfer (REST).
+The architecture of DRF is built on top of the well-established architecture of Django, which is a high-level Python web framework. DRF extends Django's capabilities to provide a specialized architecture for building Web APIs (Application Programming Interfaces) following the principles of Representational State Transfer (REST).
 
 Here's a brief description of the key components of the DRF architecture:
 
@@ -61,7 +61,7 @@ Here's a brief description of the key components of the DRF architecture:
 
 #### Directory Strucutre
 
-The directory structure of Django Rest Framework (DRF) is similar to the directory structure of a standard Django project. However, DRF introduces some specific directories and files that are essential for building Web APIs. Here's a brief description of the main directories you would find in a typical DRF project:
+The directory structure of DRF is similar to the directory structure of a standard Django project. However, DRF introduces some specific directories and files that are essential for building Web APIs. Here's a brief description of the main directories you would find in a typical DRF project:
 
 **Project Root Directory**:
 - This is the top-level directory of the DRF project.
@@ -105,7 +105,7 @@ project_root/
 ~~~
 #### Django Models (ORM)
 
-Django Rest Framework (DRF) uses Django's powerful Object-Relational Mapping (ORM) system to interact with databases and manage data persistence in Web APIs. The DRF ORM builds upon Django's ORM, allowing developers to work with API resources as Python objects and easily perform CRUD (Create, Retrieve, Update, Delete) operations on the underlying database. Through the use of Django models, developers can define the data structure of their API resources, including fields, relationships, and constraints. The ORM abstracts the complexities of SQL queries and database interactions, making it easier to work with data and eliminating the need for writing raw SQL queries. Additionally, the DRF ORM supports various database backends, enabling developers to switch between databases seamlessly, providing flexibility and scalability in building APIs. Overall, the DRF ORM simplifies data management and database operations, allowing developers to focus on creating robust and efficient Web APIs with Django Rest Framework.
+DRF uses Django's powerful Object-Relational Mapping (ORM) system to interact with databases and manage data persistence in Web APIs. The DRF ORM builds upon Django's ORM, allowing developers to work with API resources as Python objects and easily perform CRUD (Create, Retrieve, Update, Delete) operations on the underlying database. Through the use of Django models, developers can define the data structure of their API resources, including fields, relationships, and constraints. The ORM abstracts the complexities of SQL queries and database interactions, making it easier to work with data and eliminating the need for writing raw SQL queries. Additionally, the DRF ORM supports various database backends, enabling developers to switch between databases seamlessly, providing flexibility and scalability in building APIs. Overall, the DRF ORM simplifies data management and database operations, allowing developers to focus on creating robust and efficient Web APIs with Django Rest Framework.
 
 Example:
 
@@ -122,7 +122,7 @@ class Book(models.Model):
 
 #### DRF Serializers
 
-Django Rest Framework (DRF) serializers play a crucial role in facilitating data conversion between complex Python data types and API representations, such as JSON or XML. Acting as a bridge between Django models or Python objects and API views, serializers allow developers to effortlessly transform complex data into a format that can be easily rendered into standardized responses. The serializers also handle the reverse process of deserialization, enabling incoming data from API requests to be converted into native Python data types for processing. DRF serializers offer a flexible and powerful way to validate data, customize output, and handle relationships between different API resources. With features like nested serialization, field-level validation, and support for complex data structures, DRF serializers streamline the API development process and empower developers to build robust and feature-rich Web APIs with ease.
+The serializers play a crucial role in facilitating data conversion between complex Python data types and API representations, such as JSON or XML. Acting as a bridge between Django models or Python objects and API views, serializers allow developers to effortlessly transform complex data into a format that can be easily rendered into standardized responses. The serializers also handle the reverse process of deserialization, enabling incoming data from API requests to be converted into native Python data types for processing. DRF serializers offer a flexible and powerful way to validate data, customize output, and handle relationships between different API resources. With features like nested serialization, field-level validation, and support for complex data structures, DRF serializers streamline the API development process and empower developers to build robust and feature-rich Web APIs with ease.
 
 Example:
 
@@ -138,7 +138,7 @@ class BookSerializer(serializers.ModelSerializer):
 
 #### DRF Views and Class-Based Views
 
-Django Rest Framework (DRF) provides two main approaches for handling API requests and responses: function-based views and class-based views. Class-based views are a more sophisticated and preferred method in DRF due to their modularity and code reusability. They allow developers to organize API logic into separate classes, each representing a specific HTTP method (e.g., GET, POST, PUT, DELETE). Class-based views make it easy to override specific methods, customize behavior, and handle different authentication and permission requirements for each HTTP method. Moreover, DRF also offers specialized class-based views called Viewsets, which further simplify API development by combining common views for a model into a single class. This promotes a cleaner, more structured codebase and fosters efficient API development, making Django Rest Framework an ideal choice for building powerful and maintainable Web APIs.
+DRF provides two main approaches for handling API requests and responses: function-based views and class-based views. Class-based views are a more sophisticated and preferred method in DRF due to their modularity and code reusability. They allow developers to organize API logic into separate classes, each representing a specific HTTP method (e.g., GET, POST, PUT, DELETE). Class-based views make it easy to override specific methods, customize behavior, and handle different authentication and permission requirements for each HTTP method. Moreover, DRF also offers specialized class-based views called Viewsets, which further simplify API development by combining common views for a model into a single class. This promotes a cleaner, more structured codebase and fosters efficient API development, making Django Rest Framework an ideal choice for building powerful and maintainable Web APIs.
 
 Function-based View Example:
 
@@ -177,7 +177,7 @@ class BookListCreateView(generics.ListCreateAPIView):
 
 #### DRF Routing
 
-Django Rest Framework (DRF) routing is an essential component that maps URLs to the appropriate views or viewsets in a Web API. DRF leverages Django's URL patterns to define the API endpoints and associate them with the corresponding views or viewsets. The routing mechanism allows developers to organize and structure API endpoints logically, making it easy to handle different HTTP methods and resource URLs efficiently. By defining the URL patterns in a central location, DRF provides a clear and concise way to define the API's behavior and ensures that incoming API requests are directed to the correct handlers. With DRF routing, developers can create a well-organized and predictable API structure, making it straightforward for clients to interact with the API and access the desired resources with ease.
+Routing is an essential component that maps URLs to the appropriate views or viewsets in a Web API. DRF leverages Django's URL patterns to define the API endpoints and associate them with the corresponding views or viewsets. The routing mechanism allows developers to organize and structure API endpoints logically, making it easy to handle different HTTP methods and resource URLs efficiently. By defining the URL patterns in a central location, DRF provides a clear and concise way to define the API's behavior and ensures that incoming API requests are directed to the correct handlers. With DRF routing, developers can create a well-organized and predictable API structure, making it straightforward for clients to interact with the API and access the desired resources with ease.
 
 Example: 
 
@@ -204,28 +204,31 @@ urlpatterns = [
 #### Creating Apps
 
 DRF provides a simple modularization strategy with apps. To create a new app to your project type:
-
-```django-admin startapp new_app_name```
+    
+   ```django-admin startapp new_app_name```
 
 - 1: Add app to INSTALLED_APPS variable at **django_quickproject/settings.py**;
 - 2: Create models at **new_app_name/models.py**.
 - 3: Update the database structure to include new models:
-        - ```python manage.py makemigrations```
-        - ```python manage.py migrate```
+
+    ```python manage.py makemigrations```
+    ```python manage.py migrate```
+
 - 4: Add the models to admin interface including at **new_app_name/admin.py**;
 - 5: Create a new directory called **'api'** at app root directory (new_app_name/api);
 - 6: Define serializers to new models at **new_app_name/api/serializers.py** (create serializers.py file);
 - 7: Create API Views at **new_app_name/api/views.py** (create views.py file);
-- 8: Set the routes at **django_quickproject/urls.py**;
+- 8: Set the routes at **django_quickproject/urls.py**:
 ~~~python
 router.register('api/new_view', ViewClass, basename='new_view')
 ~~~
-- 9: Run the server
-        - ```python manage.py runserver```
+- 9: Run the server:
+
+    ```python manage.py runserver```
 #### Token Authentication
 
-Previosly we set a native token authentication of DRF. Hence, to access token uses the endpoint:
-- 'api/token-auth/' send a valid username/password credentials
+Previosly we set a native token authentication of DRF. Hence, to access token use the endpoint:
+- **api/token-auth/** send a valid username/password credentials
 
 The admin user credentials are 'admin/adminadmin'. To send a request using JSON use:
 
@@ -238,7 +241,84 @@ The admin user credentials are 'admin/adminadmin'. To send a request using JSON 
 
 #### Managers and Services
 
+Managers and Services play essential roles in managing data and handling business logic within Web APIs.
+
+**Managers**: DRF Managers are a crucial part of the Django ORM system, providing a convenient way to encapsulate common query logic and database operations for models. By customizing Managers, developers can define specific methods and filters to access data more efficiently, ensuring cleaner and more readable code. Managers allow for code reusability by encapsulating complex queries, making it easier to maintain and modify the data access logic across different parts of the API.
+
+Example:
+
+~~~python
+## managers.py
+from django.db import models
+
+class PublishedBooksManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
+~~~
+
+~~~python
+## models.py
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    is_published = models.BooleanField(default=False)
+
+    objects = models.Manager()  # Default Manager
+    published_books = PublishedBooksManager()  # Custom Manager
+~~~
+
+**Services**: Services in DRF are high-level components designed to handle complex business logic and act as intermediaries between views and models. They help keep views lightweight and focused on handling HTTP requests, while the Services handle the more involved operations. By abstracting business logic into Services, developers promote a modular and maintainable codebase, allowing for better testing and separation of concerns. Services are particularly beneficial when multiple views or viewsets need to perform similar operations, as they enable code reuse and avoid redundancy.
+
+Example:
+
+~~~python
+from .models import Book
+
+class BookService:
+    @staticmethod
+    def calculate_total_price(book_ids):
+        total_price = 0
+        for book_id in book_ids:
+            try:
+                book = Book.objects.get(id=book_id)
+                total_price += book.price
+            except Book.DoesNotExist:
+                pass
+        return total_price
+
+~~~
+
+Together, Managers and Services enhance the organization and efficiency of a Django Rest Framework project, promoting a clean separation of concerns and facilitating the development of scalable and robust Web APIs.
+
 #### Django Tests
 
 Django Rest Framework (DRF) supports unit testing with pytest, a popular testing framework in the Python community. Using pytest, developers can write concise and readable unit tests for their DRF views, serializers, and other components. DRF provides helpful testing utilities and mixins that simplify the process of testing API endpoints and responses. Developers can create test cases by subclassing DRF's APITestCase, which offers various assertion methods for validating API responses, status codes, and other expected behaviors. By combining pytest's powerful features with DRF's testing utilities, developers can efficiently test their Web APIs, ensuring that the API behaves as expected under different scenarios. The flexibility and ease of writing tests with pytest make it an excellent choice for ensuring the reliability and correctness of Django Rest Framework applications.
 
+Example: 
+
+~~~python
+from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
+from .models import Book
+from .serializers import BookSerializer
+
+class BookListViewTest(APITestCase):
+    def setUp(self):
+        self.url = reverse('book-list-create')
+        self.book1 = Book.objects.create(title='Book 1', author='Author 1')
+        self.book2 = Book.objects.create(title='Book 2', author='Author 2')
+        self.expected_data = BookSerializer([self.book1, self.book2], many=True).data
+
+    def test_list_books(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, self.expected_data)
+
+~~~
+
+To run the test, use the following command **pytest**.
+
+Happy coding and happy learning! For more information, please refer to the official DRF documentation: https://www.django-rest-framework.org/
+
+LISA Team
