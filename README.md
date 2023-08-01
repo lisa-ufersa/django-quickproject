@@ -24,6 +24,14 @@ Some key features of Django Rest Framework include:
 
 Overall, Django Rest Framework is widely adopted in the Python and Django community due to its ease of use, extensive documentation, and versatility in building high-quality and scalable Web APIs. It provides a solid foundation for developers to create RESTful APIs with minimal boilerplate code, allowing them to focus on delivering functional and feature-rich applications.
 
+#### System Requirements
+
+To build web applications with DRF you will need include the following requirements on your system:
+
+- Python 3.10 or lattest version;
+- Pip 22.0 or lattest version;
+- Virtualenv 20.19 or lattest version;
+
 #### Quick Install
 
 This guide aims to jump start the project settings and bring a fast hands-on DRF Project. However, to enable and run the project, some commands are still required.
@@ -103,11 +111,47 @@ project_root/
 |-- README.md (This file!)
 |-- requirements.txt  (optional)
 ~~~
+
+#### Creating Apps
+
+DRF provides a simple modularization strategy with apps. To create a new app to your project type:
+    
+   ```django-admin startapp new_app_name```
+
+Let's start our tutorial project for a Bookstore. We will add an app called **books**.
+
+   ```django-admin startapp books```
+
+All apps need be included to INSTALLED_APPS variable at **django_quickproject/settings.py**.
+
+~~~python
+# Application definition
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "users",
+    "books", # <--- Our app here
+]
+~~~
+
+- 3: Update the database structure to include new models:
+
+    ```python manage.py makemigrations```
+    ```python manage.py migrate```
+
 #### Django Models (ORM)
 
 DRF uses Django's powerful Object-Relational Mapping (ORM) system to interact with databases and manage data persistence in Web APIs. The DRF ORM builds upon Django's ORM, allowing developers to work with API resources as Python objects and easily perform CRUD (Create, Retrieve, Update, Delete) operations on the underlying database. Through the use of Django models, developers can define the data structure of their API resources, including fields, relationships, and constraints. The ORM abstracts the complexities of SQL queries and database interactions, making it easier to work with data and eliminating the need for writing raw SQL queries. Additionally, the DRF ORM supports various database backends, enabling developers to switch between databases seamlessly, providing flexibility and scalability in building APIs. Overall, the DRF ORM simplifies data management and database operations, allowing developers to focus on creating robust and efficient Web APIs with Django Rest Framework.
 
-Example:
+
+To include new models to our Bookstore let's add the Book model in **books/models.py** file.
 
 ~~~python
 from django.db import models
@@ -120,11 +164,30 @@ class Book(models.Model):
         return self.title
 ~~~
 
+After create our Book model, we need update the database structure to include new models. 
+Type the commands:
+    ```python manage.py makemigrations```
+    ```python manage.py migrate```
+
+The Admin interface of Django is a powerful and user-friendly tool that comes built-in with the Django web framework. It provides an easy-to-use web-based interface for managing and interacting with the data in the Django application's database. The Admin interface allows developers and administrators to perform CRUD (Create, Retrieve, Update, Delete) operations on model data without writing any custom code. By simply registering models in the Admin interface, developers can access a feature-rich dashboard to view, add, edit, and delete records. The Admin interface can be further customized by defining ModelAdmin classes to control how data is displayed and managed. This makes it an invaluable tool for quickly setting up and managing the backend of Django applications, saving time and effort in development and data administration tasks.
+
+Add follow commands to register the new models in admin site. In **books/admin.py** file add the lines:
+
+~~~python
+from django.contrib import admin
+from django_quickproject.books.models import Book  # <--- import the model
+
+# Register your models here.
+
+admin.site.register(Book)  # <--- register the model
+~~~
+
 #### DRF Serializers
 
 The serializers play a crucial role in facilitating data conversion between complex Python data types and API representations, such as JSON or XML. Acting as a bridge between Django models or Python objects and API views, serializers allow developers to effortlessly transform complex data into a format that can be easily rendered into standardized responses. The serializers also handle the reverse process of deserialization, enabling incoming data from API requests to be converted into native Python data types for processing. DRF serializers offer a flexible and powerful way to validate data, customize output, and handle relationships between different API resources. With features like nested serialization, field-level validation, and support for complex data structures, DRF serializers streamline the API development process and empower developers to build robust and feature-rich Web APIs with ease.
 
-Example:
+To include the serializers let's create a new directory called **api** in **books**, and create a new file **serializers.py**. 
+The path to file will be **books/api/serializers.py**. Then, add the following lines:
 
 ~~~python
 from rest_framework import serializers
@@ -163,7 +226,8 @@ def book_list_create_view(request):
         return Response(serializer.errors, status=400)
 ~~~
 
-Class-based View Example:
+Let's include a Class-based View to book list. Create a new file **views.py** in **books/api** directory.
+Then include the following lines:
 
 ~~~python
 from rest_framework import generics
@@ -193,41 +257,32 @@ from users.api.views import UserProfileExampleViewSet
 router = SimpleRouter()
 
 router.register("users", UserProfileExampleViewSet, basename="users")
+router.register("api/books", BookListCreateView, name='book-list'), ## <-- Book list view route
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/token-auth/", views.obtain_auth_token),
-    path('books/', BookListCreateView.as_view(), name='book-list-create'), ## Book route
 ]+router.urls
 ~~~
 
-#### Creating Apps
-
-DRF provides a simple modularization strategy with apps. To create a new app to your project type:
-    
-   ```django-admin startapp new_app_name```
-
-- 1: Add app to INSTALLED_APPS variable at **django_quickproject/settings.py**;
-- 2: Create models at **new_app_name/models.py**.
-- 3: Update the database structure to include new models:
-
-    ```python manage.py makemigrations```
-    ```python manage.py migrate```
-
-- 4: Add the models to admin interface including at **new_app_name/admin.py**;
-- 5: Create a new directory called **'api'** at app root directory (new_app_name/api);
-- 6: Define serializers to new models at **new_app_name/api/serializers.py** (create serializers.py file);
-- 7: Create API Views at **new_app_name/api/views.py** (create views.py file);
-- 8: Set the routes at **django_quickproject/urls.py**:
-~~~python
-router.register('api/new_view', ViewClass, basename='new_view')
-~~~
-- 9: Run the server:
-
+That's it! Now run the internal server typing the command:
     ```python manage.py runserver```
+
+#### Admin Django Interface
+
+To acesss the admin Django interface type the following URL in your browser:
+
+    ```http://localhost:8000/admin/```
+
+In the screen look for Books item in left sidebar. Then, on the right top corner click on **+Add** button. Will appear a form to include new books on the system. Include many books that your want. Now, let's test our Book List View.
+
+To access the book list type the following URL in browser:
+
+    ```http://localhost:8000/api/books/```
+
 #### Token Authentication
 
-Previosly we set a native token authentication of DRF. Hence, to access token use the endpoint:
+we set a native token authentication of DRF. Hence, to access token use the endpoint:
 - **api/token-auth/** send a valid username/password credentials
 
 The admin user credentials are 'admin/adminadmin'. To send a request using JSON use:
@@ -272,6 +327,7 @@ class Book(models.Model):
 Example:
 
 ~~~python
+# services.py
 from .models import Book
 
 class BookService:
