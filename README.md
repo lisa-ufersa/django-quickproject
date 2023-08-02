@@ -42,13 +42,19 @@ This guide aims to jump start the project settings and bring a fast hands-on DRF
 ~~~
 
 - **Step 2** - Activate the virtual python environment:
+~~~
     . venv/bin/activate
+~~~
 
 - **Step 3** - Install all dependencies:
+~~~
     pip install -r requirements.txt
+~~~
 
 - **Step 4** - Run internal server and fun! ;)
+~~~
     python manage.py runserver
+~~~
 
 #### DRF Architecture
 
@@ -113,12 +119,14 @@ project_root/
 #### Creating Apps
 
 DRF provides a simple modularization strategy with apps. To create a new app to your project type:
-    
+~~~   
    django-admin startapp new_app_name
+~~~
 
 Let's start our tutorial project for a Bookstore. We will add an app called **books**.
-
+~~~
    django-admin startapp books
+~~~
 
 All apps need be included to INSTALLED_APPS variable at **django_quickproject/settings.py**.
 
@@ -158,10 +166,12 @@ class Book(models.Model):
 
 After create our Book model, we need update the database structure to include new models. 
 Type the commands:
-
+~~~
    python manage.py makemigrations
-
+~~~
+~~~
    python manage.py migrate
+~~~
 
 The Admin interface of Django is a powerful and user-friendly tool that comes built-in with the Django web framework. It provides an easy-to-use web-based interface for managing and interacting with the data in the Django application's database. The Admin interface allows developers and administrators to perform CRUD (Create, Retrieve, Update, Delete) operations on model data without writing any custom code. By simply registering models in the Admin interface, developers can access a feature-rich dashboard to view, add, edit, and delete records. The Admin interface can be further customized by defining ModelAdmin classes to control how data is displayed and managed. This makes it an invaluable tool for quickly setting up and managing the backend of Django applications, saving time and effort in development and data administration tasks.
 
@@ -260,8 +270,9 @@ urlpatterns = [
 ~~~
 
 That's it! Now run the internal server typing the command:
-
+~~~
    python manage.py runserver
+~~~
 
 #### Admin Django Interface
 
@@ -374,7 +385,10 @@ class BookListViewTest(APITestCase):
 
 ~~~
 
-To run the test, use the following command **pytest**.
+To run the test, use the following command:
+~~~
+    pytest
+~~~
 
 Happy coding and happy learning! For more information, please refer to the official DRF documentation: https://www.django-rest-framework.org/
 
