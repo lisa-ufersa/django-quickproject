@@ -56,6 +56,8 @@ This guide aims to jump start the project settings and bring a fast hands-on DRF
     python manage.py runserver
 ~~~
 
+Stop the server typing Ctrl+C in terminal. 
+
 #### DRF Architecture
 
 The architecture of DRF is built on top of the well-established architecture of Django, which is a high-level Python web framework. DRF extends Django's capabilities to provide a specialized architecture for building Web APIs (Application Programming Interfaces) following the principles of Representational State Transfer (REST).
@@ -236,11 +238,11 @@ Let's include a Class-based View to book list. Create a new file **views.py** in
 Then include the following lines:
 
 ~~~python
-from rest_framework import generics
+from rest_framework.viewsets import ModelViewSet
 from books.models import Book
 from books.api.serializers import BookSerializer
 
-class BookListCreateView(generics.ListCreateAPIView):
+class BookListCreateView(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 ~~~
