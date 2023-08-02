@@ -173,6 +173,8 @@ Type the commands:
    python manage.py migrate
 ~~~
 
+### Admin Django Interface 
+
 The Admin interface of Django is a powerful and user-friendly tool that comes built-in with the Django web framework. It provides an easy-to-use web-based interface for managing and interacting with the data in the Django application's database. The Admin interface allows developers and administrators to perform CRUD (Create, Retrieve, Update, Delete) operations on model data without writing any custom code. By simply registering models in the Admin interface, developers can access a feature-rich dashboard to view, add, edit, and delete records. The Admin interface can be further customized by defining ModelAdmin classes to control how data is displayed and managed. This makes it an invaluable tool for quickly setting up and managing the backend of Django applications, saving time and effort in development and data administration tasks.
 
 Add follow commands to register the new models in admin site. In **books/admin.py** file add the lines:
