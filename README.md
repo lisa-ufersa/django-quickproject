@@ -38,7 +38,7 @@ This guide aims to jump start the project settings and bring a fast hands-on DRF
 
 - **Step 1** - Create a virtual python environment to install all required dependencies:
 ~~~
-    python -m venv venv
+    python3 -m venv venv
 ~~~
 
 - **Step 2** - Activate the virtual python environment:
