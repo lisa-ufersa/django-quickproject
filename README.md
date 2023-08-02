@@ -37,20 +37,16 @@ To build web applications with DRF you will need include the following requireme
 This guide aims to jump start the project settings and bring a fast hands-on DRF Project. However, to enable and run the project, some commands are still required.
 
 - **Step 1** - Create a virtual python environment to install all required dependencies:
-
-```python -m venv venv```
+    python -m venv venv
 
 - **Step 2** - Activate the virtual python environment:
-
-```. venv/bin/activate```
+    . venv/bin/activate```
 
 - **Step 3** - Install all dependencies:
-
-```pip install -r requirements.txt```
+    pip install -r requirements.txt
 
 - **Step 4** - Run internal server and fun! ;)
-
-```python manage.py runserver```
+    python manage.py runserver
 
 #### DRF Architecture
 
@@ -116,11 +112,11 @@ project_root/
 
 DRF provides a simple modularization strategy with apps. To create a new app to your project type:
     
-   ```django-admin startapp new_app_name```
+   django-admin startapp new_app_name
 
 Let's start our tutorial project for a Bookstore. We will add an app called **books**.
 
-   ```django-admin startapp books```
+   django-admin startapp books
 
 All apps need be included to INSTALLED_APPS variable at **django_quickproject/settings.py**.
 
@@ -140,12 +136,6 @@ INSTALLED_APPS = [
     "books", # <--- Our app here
 ]
 ~~~
-
-- 3: Update the database structure to include new models:
-
-    ```python manage.py makemigrations```
-    ```python manage.py migrate```
-
 #### Django Models (ORM)
 
 DRF uses Django's powerful Object-Relational Mapping (ORM) system to interact with databases and manage data persistence in Web APIs. The DRF ORM builds upon Django's ORM, allowing developers to work with API resources as Python objects and easily perform CRUD (Create, Retrieve, Update, Delete) operations on the underlying database. Through the use of Django models, developers can define the data structure of their API resources, including fields, relationships, and constraints. The ORM abstracts the complexities of SQL queries and database interactions, making it easier to work with data and eliminating the need for writing raw SQL queries. Additionally, the DRF ORM supports various database backends, enabling developers to switch between databases seamlessly, providing flexibility and scalability in building APIs. Overall, the DRF ORM simplifies data management and database operations, allowing developers to focus on creating robust and efficient Web APIs with Django Rest Framework.
@@ -166,8 +156,10 @@ class Book(models.Model):
 
 After create our Book model, we need update the database structure to include new models. 
 Type the commands:
-    ```python manage.py makemigrations```
-    ```python manage.py migrate```
+
+   python manage.py makemigrations
+
+   python manage.py migrate
 
 The Admin interface of Django is a powerful and user-friendly tool that comes built-in with the Django web framework. It provides an easy-to-use web-based interface for managing and interacting with the data in the Django application's database. The Admin interface allows developers and administrators to perform CRUD (Create, Retrieve, Update, Delete) operations on model data without writing any custom code. By simply registering models in the Admin interface, developers can access a feature-rich dashboard to view, add, edit, and delete records. The Admin interface can be further customized by defining ModelAdmin classes to control how data is displayed and managed. This makes it an invaluable tool for quickly setting up and managing the backend of Django applications, saving time and effort in development and data administration tasks.
 
@@ -266,23 +258,29 @@ urlpatterns = [
 ~~~
 
 That's it! Now run the internal server typing the command:
-    ```python manage.py runserver```
+
+   python manage.py runserver
 
 #### Admin Django Interface
 
 To acesss the admin Django interface type the following URL in your browser:
 
-    ```http://localhost:8000/admin/```
+    http://localhost:8000/admin/
 
+In the login form type the credentials: 
+~~~
+login: admin
+password: adminadmin
+~~~
 In the screen look for Books item in left sidebar. Then, on the right top corner click on **+Add** button. Will appear a form to include new books on the system. Include many books that your want. Now, let's test our Book List View.
 
 To access the book list type the following URL in browser:
 
-    ```http://localhost:8000/api/books/```
+    http://localhost:8000/api/books/
 
 #### Token Authentication
 
-we set a native token authentication of DRF. Hence, to access token use the endpoint:
+We set a native token authentication of DRF. Hence, to access token use the endpoint:
 - **api/token-auth/** send a valid username/password credentials
 
 The admin user credentials are 'admin/adminadmin'. To send a request using JSON use:
@@ -294,6 +292,7 @@ The admin user credentials are 'admin/adminadmin'. To send a request using JSON 
 }
 ~~~
 
+To include new users create a new endpoint to the User model or add new users using the Admin Django Interface. 
 #### Managers and Services
 
 Managers and Services play essential roles in managing data and handling business logic within Web APIs.
