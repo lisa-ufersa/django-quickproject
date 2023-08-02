@@ -181,7 +181,7 @@ Add follow commands to register the new models in admin site. In **books/admin.p
 
 ~~~python
 from django.contrib import admin
-from django_quickproject.books.models import Book  # <--- import the model
+from books.models import Book  # <--- import the model
 
 # Register your models here.
 
@@ -197,7 +197,7 @@ The path to file will be **books/api/serializers.py**. Then, add the following l
 
 ~~~python
 from rest_framework import serializers
-from .models import Book
+from books.models import Book
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
@@ -214,8 +214,8 @@ Function-based View Example:
 ~~~python
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Book
-from .serializers import BookSerializer
+from books.models import Book
+from books.api.serializers import BookSerializer
 
 @api_view(['GET', 'POST'])
 def book_list_create_view(request):
@@ -237,8 +237,8 @@ Then include the following lines:
 
 ~~~python
 from rest_framework import generics
-from .models import Book
-from .serializers import BookSerializer
+from books.models import Book
+from books.api.serializers import BookSerializer
 
 class BookListCreateView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
@@ -249,21 +249,21 @@ class BookListCreateView(generics.ListCreateAPIView):
 
 Routing is an essential component that maps URLs to the appropriate views or viewsets in a Web API. DRF leverages Django's URL patterns to define the API endpoints and associate them with the corresponding views or viewsets. The routing mechanism allows developers to organize and structure API endpoints logically, making it easy to handle different HTTP methods and resource URLs efficiently. By defining the URL patterns in a central location, DRF provides a clear and concise way to define the API's behavior and ensures that incoming API requests are directed to the correct handlers. With DRF routing, developers can create a well-organized and predictable API structure, making it straightforward for clients to interact with the API and access the desired resources with ease.
 
-Example: 
+Let's include our view to list books in the **urls.py** file to register it in the router. 
 
 ~~~python
 from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import SimpleRouter
 from rest_framework.authtoken import views
-from books.views import BookListCreateView ### Book View
+from books.api.views import BookListCreateView ### Book View
 
 from users.api.views import UserProfileExampleViewSet
 
 router = SimpleRouter()
 
 router.register("users", UserProfileExampleViewSet, basename="users")
-router.register("api/books", BookListCreateView, name='book-list'), ## <-- Book list view route
+router.register("api/books", BookListCreateView, basename="book-list"), ## <-- Book list view route
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -342,7 +342,7 @@ Example:
 
 ~~~python
 # services.py
-from .models import Book
+from books.models import Book
 
 class BookService:
     @staticmethod
@@ -370,8 +370,8 @@ Example:
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from .models import Book
-from .serializers import BookSerializer
+from books.models import Book
+from books.api.serializers import BookSerializer
 
 class BookListViewTest(APITestCase):
     def setUp(self):
