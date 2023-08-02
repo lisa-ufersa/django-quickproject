@@ -26,7 +26,7 @@ Overall, Django Rest Framework is widely adopted in the Python and Django commun
 
 #### System Requirements
 
-To build web applications with DRF you will need include the following requirements on your system:
+To build web applications with DRF you will need to include the following requirements on your system:
 
 - Python 3.10 or lattest version;
 - Pip 22.0 or lattest version;
@@ -73,7 +73,7 @@ Here's a brief description of the key components of the DRF architecture:
 7. **Filtering, Searching, and Ordering**: Enables data filtering, searching, and ordering for API results.
 8. **API Versioning**: Supports API changes while maintaining backward compatibility for older clients.
 
-#### Directory Strucutre
+#### Directory Structure
 
 The directory structure of DRF is similar to the directory structure of a standard Django project. However, DRF introduces some specific directories and files that are essential for building Web APIs. Here's a brief description of the main directories you would find in a typical DRF project:
 
@@ -153,7 +153,7 @@ INSTALLED_APPS = [
 DRF uses Django's powerful Object-Relational Mapping (ORM) system to interact with databases and manage data persistence in Web APIs. The DRF ORM builds upon Django's ORM, allowing developers to work with API resources as Python objects and easily perform CRUD (Create, Retrieve, Update, Delete) operations on the underlying database. Through the use of Django models, developers can define the data structure of their API resources, including fields, relationships, and constraints. The ORM abstracts the complexities of SQL queries and database interactions, making it easier to work with data and eliminating the need for writing raw SQL queries. Additionally, the DRF ORM supports various database backends, enabling developers to switch between databases seamlessly, providing flexibility and scalability in building APIs. Overall, the DRF ORM simplifies data management and database operations, allowing developers to focus on creating robust and efficient Web APIs with Django Rest Framework.
 
 
-To include new models to our Bookstore let's add the Book model in **books/models.py** file.
+To include new models to our Bookstore, let's add the Book model in **books/models.py** file.
 
 ~~~python
 from django.db import models
@@ -251,7 +251,7 @@ class BookListCreateView(ModelViewSet):
 
 Routing is an essential component that maps URLs to the appropriate views or viewsets in a Web API. DRF leverages Django's URL patterns to define the API endpoints and associate them with the corresponding views or viewsets. The routing mechanism allows developers to organize and structure API endpoints logically, making it easy to handle different HTTP methods and resource URLs efficiently. By defining the URL patterns in a central location, DRF provides a clear and concise way to define the API's behavior and ensures that incoming API requests are directed to the correct handlers. With DRF routing, developers can create a well-organized and predictable API structure, making it straightforward for clients to interact with the API and access the desired resources with ease.
 
-Let's include our view to list books in the **urls.py** file to register it in the router. 
+Let's include our view to list books in the **django_quickproject/urls.py** file to register it in the router. 
 
 ~~~python
 from django.contrib import admin
@@ -280,7 +280,7 @@ That's it! Now run the internal server typing the command:
 
 #### Admin Django Interface
 
-To acesss the admin Django interface type the following URL in your browser:
+To acesss the admin Django interface, type the following URL in your browser:
 
     http://localhost:8000/admin/
 
@@ -289,7 +289,7 @@ In the login form type the credentials:
 login: admin
 password: adminadmin
 ~~~
-In the screen look for Books item in left sidebar. Then, on the right top corner click on **+Add** button. Will appear a form to include new books on the system. Include many books that your want. Now, let's test our Book List View.
+In the screen look for Books item in the list. Then, on the right top corner click on **ADD BOOK +** button. Will appear a form to include new books on the system. Include many books that you want. Now, let's test our Book List View.
 
 To access the book list type the following URL in browser:
 
@@ -309,7 +309,7 @@ The admin user credentials are 'admin/adminadmin'. To send a request using JSON 
 }
 ~~~
 
-To include new users create a new endpoint to the User model or add new users using the Admin Django Interface. 
+To include new users, create a new endpoint to the User model or add new users using the Admin Django Interface. 
 #### Managers and Services
 
 Managers and Services play essential roles in managing data and handling business logic within Web APIs.
