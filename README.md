@@ -92,7 +92,7 @@ The directory structure of DRF is similar to the directory structure of a standa
 Example: 
 ~~~
 project_root/
-|-- django_quickproject/
+|-- config/
 |   |-- __init__.py
 |   |-- asgi.py
 |   |-- settings.py
@@ -130,7 +130,7 @@ Let's start our tutorial project for a Bookstore. We will add an app called **bo
    django-admin startapp books
 ~~~
 
-All apps need be included to INSTALLED_APPS variable at **django_quickproject/settings.py**.
+All apps need be included to INSTALLED_APPS variable at **config/settings.py**.
 
 ~~~python
 # Application definition
@@ -251,7 +251,7 @@ class BookListCreateView(ModelViewSet):
 
 Routing is an essential component that maps URLs to the appropriate views or viewsets in a Web API. DRF leverages Django's URL patterns to define the API endpoints and associate them with the corresponding views or viewsets. The routing mechanism allows developers to organize and structure API endpoints logically, making it easy to handle different HTTP methods and resource URLs efficiently. By defining the URL patterns in a central location, DRF provides a clear and concise way to define the API's behavior and ensures that incoming API requests are directed to the correct handlers. With DRF routing, developers can create a well-organized and predictable API structure, making it straightforward for clients to interact with the API and access the desired resources with ease.
 
-Let's include our view to list books in the **django_quickproject/urls.py** file to register it in the router. 
+Let's include our view to list books in the **config/urls.py** file to register it in the router. 
 
 ~~~python
 from django.contrib import admin
